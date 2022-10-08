@@ -78,3 +78,15 @@ server.post('/images', function (req, res, next)
     })
     console.log('< images POST: saving response')
 })
+
+server.del('/images', function (req, res, next)
+{
+    console.log('')
+    console.log('> images DELETE ALL: received request')
+    imagesSave.deleteMany({}, function (error, image)
+    {
+        if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+        res.send(200, 'Images Deleted')
+    })
+    console.log('< images DELETE ALL: executed')
+})
