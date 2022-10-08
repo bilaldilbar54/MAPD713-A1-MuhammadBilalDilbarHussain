@@ -1,6 +1,8 @@
 var Server_Name = 'imagesdata-API'
 var Port = 5000;
 var Host = '127.0.0.1';
+var ReqPost = 0;
+var ReqGet = 0;
 
 var restify = require('restify')
  // Get a persistence engine for the images
@@ -33,8 +35,12 @@ server.get('/images', function (req, res, next)
     {
         res.send(images)
     })
-    //Log response information
+    // Log response information
     console.log('< images GET ALL: sending response')
+    // Request Counters (GET & POST)
+    console.log('Processed Request Count-->')
+    console.log('GET: ' + ReqGet)
+    console.log('POST: ' + ReqPost)
 })
 
 // Creating a new image
@@ -77,6 +83,10 @@ server.post('/images', function (req, res, next)
         res.send(201, image)
     })
     console.log('< images POST: saving response')
+    // Request Counters (GET & POST)
+    console.log('Processed Request Count-->')
+    console.log('GET: ' + ReqGet)
+    console.log('POST: ' + ReqPost)
 })
 
 server.del('/images', function (req, res, next)
@@ -89,4 +99,8 @@ server.del('/images', function (req, res, next)
         res.send(200, 'Images Deleted')
     })
     console.log('< images DELETE ALL: executed')
+    // Request Counters (GET & POST)
+    console.log('Processed Request Count-->')
+    console.log('GET: ' + ReqGet)
+    console.log('POST: ' + ReqPost)
 })
