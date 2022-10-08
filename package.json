@@ -1,0 +1,15 @@
+{
+  "name": "mapd713-a1-muhammadbilaldilbarhussain",
+  "version": "1.0.0",
+  "description": "MAPD713 - Assignment 1",
+  "main": "images.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammad Bilal Dilbar Hussain",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^8.6.1",
+    "save": "^2.9.0"
+  }
+}
