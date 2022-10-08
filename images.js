@@ -22,7 +22,7 @@ server
     // Maps req.body to req.params so there is no switching between them
     .use(restify.bodyParser())
 
-// Get all images in the system
+// Getting all images in the system
 server.get('/images', function (req, res, next)
 {
     console.log('')
@@ -35,4 +35,46 @@ server.get('/images', function (req, res, next)
     })
     //Log response information
     console.log('< images GET ALL: sending response')
+})
+
+// Creating a new image
+server.post('/images', function (req, res, next)
+{
+    console.log('')
+    console.log('> images POST: received request')
+    // Make sure name is defined
+    if (req.params.imageID === undefined ) 
+    {
+        // If there are any errors, pass them to next in the correct format
+        return next(new restify.InvalidArgumentError('imageID must be supplied'))
+    }
+    if (req.params.name === undefined ) 
+    {
+        // If there are any errors, pass them to next in the correct format
+        return next(new restify.InvalidArgumentError('name must be supplied'))
+    }
+    if (req.params.url === undefined ) 
+    {
+        // If there are any errors, pass them to next in the correct format
+        return next(new restify.InvalidArgumentError('url must be supplied'))
+    }
+    if (req.params.size === undefined ) 
+    {
+        // If there are any errors, pass them to next in the correct format
+        return next(new restify.InvalidArgumentError('size must be supplied'))
+    }
+    var newImage = 
+    {
+        imageID: req.params.imageID,
+        name: req.params.name,
+        url: req.params.url,
+        size: req.params.size
+    }
+    // Creating the image using the persistence engine
+    imagesSave.create( newImage, function (error, image)
+    {
+        if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+        res.send(201, image)
+    })
+    console.log('< images POST: saving response')
 })
