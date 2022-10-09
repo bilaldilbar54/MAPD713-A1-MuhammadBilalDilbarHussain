@@ -9,7 +9,7 @@
   "author": "Muhammad Bilal Dilbar Hussain",
   "license": "ISC",
   "dependencies": {
-    "restify": "^8.6.1",
+    "restify": "^4.1.1",
     "save": "^2.9.0"
   }
 }
